@@ -5,8 +5,8 @@ import NavLinks from './NavLinks'
 import { useEffect, useState } from 'react'
 
 const themes = {
-  pastel: 'pastel',
-  business: 'business',
+  lofi: 'lofi',
+  black: 'black',
 }
 
 const getThemeFromLocalStorage = () => {
@@ -17,8 +17,8 @@ const NavBar = () => {
   const [theme, setTheme] = useState(getThemeFromLocalStorage())
 
   const handleTheme = () => {
-    const { pastel, business } = themes
-    const newTheme = theme === pastel ? business : pastel
+    const { lofi, black } = themes
+    const newTheme = theme === lofi ? black : lofi
     setTheme(newTheme)
   }
 
