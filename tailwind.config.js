@@ -6,6 +6,6 @@ export default {
   },
   plugins: [require('daisyui'), require('@tailwindcss/typography')],
   daisyui: {
-    themes: ['lofi', 'black'],
+    themes: ['pastel', 'forest'],
   },
 }

@@ -21,7 +21,7 @@ const Hero = () => {
           expedita amet exercitationem.
         </p>
         <div className="mt-10">
-          <Link to="/products" className="btn btn-primary">
+          <Link to="/products" className="btn btn-primary capitalize">
             Products
           </Link>
         </div>
