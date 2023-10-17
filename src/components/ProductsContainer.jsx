@@ -2,7 +2,6 @@ import { useLoaderData } from 'react-router-dom'
 import { ProductsGrid, ProductsList } from '../components'
 import { useState } from 'react'
 import { BsFillGridFill, BsList } from 'react-icons/bs'
-import { FaHtml5 } from 'react-icons/fa6'
 
 const ProductsContainer = () => {
   const { meta } = useLoaderData()

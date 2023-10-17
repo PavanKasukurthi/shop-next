@@ -1,15 +1,15 @@
-const FormInput = ({ label, name, type, placeholder }) => {
+const FormInput = ({ label, name, type, placeholder, size }) => {
   return (
     <div className="form-control">
-      <label className="label">
-        <span className="label-text">{label}</span>
+      <label className="label" htmlFor={name}>
+        <span className="label-text capitalize">{label}</span>
       </label>
       <input
         type={type}
         name={name}
         // defaultValue={defaultValue}
         placeholder={placeholder}
-        className="input input-bordered"
+        className={`input input-bordered ${size}`}
       />
     </div>
   )
