@@ -9,7 +9,7 @@ export const loader = async ({ request }) => {
     ...new URL(request.url).searchParams.entries(),
   ])
 
-  console.log(params)
+  // console.log(params)
 
   const response = await customFetch(url, { params })
 
