@@ -10,13 +10,17 @@ const defaultState = {
   orderTotal: 0,
 }
 
+const getCartFromLocalStorage = () => {
+  return JSON.parse(localStorage.getItem('cart')) || defaultState
+}
+
 const cartSlice = createSlice({
   name: 'cart',
-  initialState: defaultState,
+  initialState: getCartFromLocalStorage(),
   reducers: {
-    // ADD ITEM
+    //  ADD ITEM
     addItem: (state, action) => {
-      console.log(action)
+      // console.log(action)
       const { product } = action.payload
       const item = state.cartItems.find((i) => i.cartID === product.cartID)
 
@@ -28,16 +32,60 @@ const cartSlice = createSlice({
 
       state.numItemsInCart += product.amount
       state.cartTotal += product.price * product.amount
+
+      //PASS IN THE STATE SINCE WE ARE INVOKING FROM REDUCER
+      cartSlice.caseReducers.calculateTotals(state)
+
+      toast.success('Item is added to the cart')
+    },
+
+    //CLEAR CART
+    clearCart: (state) => {
+      console.log(JSON.stringify(defaultState))
+
+      localStorage.setItem('cart', JSON.stringify(defaultState))
+
+      return defaultState
+    },
+
+    //REMOVE ITEM
+    removeItem: (state, action) => {
+      const { cartID } = action.payload
+      const product = state.cartItems.find((i) => i.cartID === cartID)
+
+      state.cartItems = state.cartItems.filter((i) => i.cartID !== cartID)
+
+      state.numItemsInCart -= product.amount
+      state.cartTotal -= product.price * product.amount
+
+      cartSlice.caseReducers.calculateTotals(state)
+
+      toast.error('Item is removed from the cart')
+    },
+
+    //EDIT ITEM
+    editItem: (state, action) => {
+      const { cartID, amount } = action.payload
+
+      const item = state.cartItems.find((i) => i.cartID === cartID)
+
+      state.numItemsInCart += amount - item.amount
+
+      state.cartTotal += item.price * (amount - item.amount)
+
+      item.amount = amount
+
+      cartSlice.caseReducers.calculateTotals(state)
+
+      toast.success('Cart updated')
+    },
+
+    //CALCULATE TOTALS
+    calculateTotals: (state) => {
       state.tax = 0.1 * state.cartTotal
       state.orderTotal = state.cartTotal + state.shipping + state.tax
       localStorage.setItem('cart', JSON.stringify(state))
-      toast.success('Item added to the cart')
     },
-
-    clearCart: (state) => {},
-
-    removeItem: (state, action) => {},
-    editItem: (state, action) => {},
   },
 })
 
