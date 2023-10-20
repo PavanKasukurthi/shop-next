@@ -25,6 +25,7 @@ const SingleProduct = () => {
   }
 
   const cartProduct = {
+    //UNIQUE ID FOR EACH COLOR OF PRODUCT
     cartID: product.id + productColor,
     productID: product.id,
     image,
