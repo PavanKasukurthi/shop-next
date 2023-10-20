@@ -40,7 +40,7 @@ const CartItem = ({ cartItem }) => {
         </h4>
 
         {/* COLOR */}
-        <p className="mt-2 text-sm capitalize flex items-center gap-x-2 mt-4">
+        <p className="mt-4 text-sm capitalize flex items-center gap-x-2 ">
           color:
           <span
             className="badge badge-sm"
