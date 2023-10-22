@@ -21,7 +21,7 @@ const NavBar = () => {
           {/* TITLE */}
           <NavLink
             to="/"
-            className="hidden lg:flex btn btn-primary text-3xl items-center"
+            className="hidden lg:flex btn btn-primary text-3xl font-semibold items-center"
           >
             S
           </NavLink>
